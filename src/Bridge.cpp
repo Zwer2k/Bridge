@@ -55,7 +55,7 @@ void BridgeClass::begin() {
     delay(500);
     dropAll();
 
-    // Reset the bridge to check if it is running
+    // Reset the brigde to check if it is running
     uint8_t cmd[] = {'X', 'X', '1', '0', '0'};
     uint8_t res[4];
     max_retries = 50;
@@ -138,31 +138,31 @@ unsigned int BridgeClass::get(const char *key, uint8_t *value, unsigned int maxl
 #include <util/crc16.h>
 #else
 // Generic implementation for non-AVR architectures
-uint16_t _crc_ccitt_update(uint16_t crc, uint8_t data)
+uint16_t _crc_ccitt_update(uint16_t _crc, uint8_t _data)
 {
-  data ^= crc & 0xff;
-  data ^= data << 4;
-  return ((((uint16_t)data << 8) | ((crc >> 8) & 0xff)) ^
-          (uint8_t)(data >> 4) ^
-          ((uint16_t)data << 3));
+  _data ^= _crc & 0xff;
+  _data ^= _data << 4;
+  return ((((uint16_t)_data << 8) | ((_crc >> 8) & 0xff)) ^
+          (uint8_t)(_data >> 4) ^
+          ((uint16_t)_data << 3));
 }
 #endif
 
 void BridgeClass::crcUpdate(uint8_t c) {
-  CRC = _crc_ccitt_update(CRC, c);
+  crc = _crc_ccitt_update(crc, c);
 }
 
 void BridgeClass::crcReset() {
-  CRC = 0xFFFF;
+  crc = 0xFFFF;
 }
 
 void BridgeClass::crcWrite() {
-  stream.write((char)(CRC >> 8));
-  stream.write((char)(CRC & 0xFF));
+  stream.write((char)(crc >> 8));
+  stream.write((char)(crc & 0xFF));
 }
 
-bool BridgeClass::crcCheck(uint16_t _CRC) {
-  return CRC == _CRC;
+bool BridgeClass::crcCheck(uint16_t _crc) {
+  return crc == _crc;
 }
 
 uint16_t BridgeClass::transfer(const uint8_t *buff1, uint16_t len1,
@@ -309,3 +309,4 @@ SerialBridgeClass Bridge(Serial1);
 #else
 SerialBridgeClass Bridge(Serial);
 #endif
+
