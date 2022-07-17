@@ -32,7 +32,7 @@ class Process : public Stream {
     void addParameter(const String &param);
     unsigned int run();
     void runAsynchronously();
-    boolean running();
+    bool running();
     unsigned int exitValue();
     void close();
 
@@ -57,7 +57,7 @@ class Process : public Stream {
     BridgeClass &bridge;
     uint8_t handle;
     String *cmdline;
-    boolean started;
+    bool started;
 
   private:
     void doBuffer();

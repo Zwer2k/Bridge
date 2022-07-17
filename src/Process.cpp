@@ -89,7 +89,7 @@ void Process::runAsynchronously() {
     started = true;
 }
 
-boolean Process::running() {
+bool Process::running() {
   uint8_t cmd[] = {'r', handle};
   uint8_t res[1];
   bridge.transfer(cmd, 2, res, 1);

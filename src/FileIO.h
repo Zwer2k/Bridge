@@ -41,13 +41,13 @@ class File : public Stream {
     virtual int available();
     virtual void flush();
     int read(void *buf, uint16_t nbyte);
-    boolean seek(uint32_t pos);
+    bool seek(uint32_t pos);
     uint32_t position();
     uint32_t size();
     void close();
     operator bool();
     const char * name();
-    boolean isDirectory();
+    bool isDirectory();
     File openNextFile(uint8_t mode = FILE_READ);
     void rewindDirectory(void);
 
@@ -75,7 +75,7 @@ class FileSystemClass {
     FileSystemClass() : bridge(Bridge) { }
     FileSystemClass(BridgeClass &_b) : bridge(_b) { }
 
-    boolean begin();
+    bool begin();
 
     // Open the specified file/directory with the supplied mode (e.g. read or
     // write, etc). Returns a File object for interacting with the file.
@@ -83,16 +83,16 @@ class FileSystemClass {
     File open(const char *filename, uint8_t mode = FILE_READ);
 
     // Methods to determine if the requested file path exists.
-    boolean exists(const char *filepath);
+    bool exists(const char *filepath);
 
     // Create the requested directory hierarchy--if intermediate directories
     // do not exist they will be created.
-    boolean mkdir(const char *filepath);
+    bool mkdir(const char *filepath);
 
     // Delete the file.
-    boolean remove(const char *filepath);
+    bool remove(const char *filepath);
 
-    boolean rmdir(const char *filepath);
+    bool rmdir(const char *filepath);
 
   private:
     friend class File;

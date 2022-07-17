@@ -57,7 +57,7 @@ class BridgeClient : public Client {
   private:
     BridgeClass &bridge;
     uint8_t handle;
-    boolean opened;
+    bool opened;
 
   private:
     void doBuffer();
