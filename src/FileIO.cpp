@@ -80,7 +80,7 @@ int File::peek() {
     return buffer[readPos];
 }
 
-boolean File::seek(uint32_t position) {
+bool File::seek(uint32_t position) {
   uint8_t cmd[] = {
     's',
     handle,
@@ -186,7 +186,7 @@ const char *File::name() {
 }
 
 
-boolean File::isDirectory() {
+bool File::isDirectory() {
   uint8_t res[1];
   uint8_t cmd[] = {'i'};
   if (mode != 255)
@@ -237,7 +237,7 @@ void File::rewindDirectory(void) {
 
 
 
-boolean FileSystemClass::begin() {
+bool FileSystemClass::begin() {
   return true;
 }
 
@@ -245,7 +245,7 @@ File FileSystemClass::open(const char *filename, uint8_t mode) {
   return File(filename, mode);
 }
 
-boolean FileSystemClass::exists(const char *filepath) {
+bool FileSystemClass::exists(const char *filepath) {
   Process ls;
   ls.begin("ls");
   ls.addParameter(filepath);
@@ -253,7 +253,7 @@ boolean FileSystemClass::exists(const char *filepath) {
   return (res == 0);
 }
 
-boolean FileSystemClass::mkdir(const char *filepath) {
+bool FileSystemClass::mkdir(const char *filepath) {
   Process mk;
   mk.begin("mkdir");
   mk.addParameter("-p");
@@ -262,7 +262,7 @@ boolean FileSystemClass::mkdir(const char *filepath) {
   return (res == 0);
 }
 
-boolean FileSystemClass::remove(const char *filepath) {
+bool FileSystemClass::remove(const char *filepath) {
   Process rm;
   rm.begin("rm");
   rm.addParameter(filepath);
@@ -270,7 +270,7 @@ boolean FileSystemClass::remove(const char *filepath) {
   return (res == 0);
 }
 
-boolean FileSystemClass::rmdir(const char *filepath) {
+bool FileSystemClass::rmdir(const char *filepath) {
   Process rm;
   rm.begin("rmdir");
   rm.addParameter(filepath);

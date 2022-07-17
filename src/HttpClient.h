@@ -43,13 +43,13 @@ class HttpClient : public Process {
     void putAsynchronously(const char * url, const char * data);
     void setHeader(String &header);
     void setHeader(const char * header);
-    boolean ready();
+    bool ready();
     unsigned int getResult();
     void noCheckSSL();
     void checkSSL();
 
   private:
-    boolean insecure;
+    bool insecure;
 
   private:
     void addHeader();

@@ -171,7 +171,7 @@ void HttpClient::putAsynchronously(const char *url, const char *data) {
   runAsynchronously();
 }
 
-boolean HttpClient::ready() {
+bool HttpClient::ready() {
   return !running();
 }
 

@@ -53,7 +53,7 @@ class BridgeUDP : public UDP {
   private:
     BridgeClass &bridge;
     uint8_t handle;
-    boolean opened;
+    bool opened;
 
   private:
     void doBuffer();
